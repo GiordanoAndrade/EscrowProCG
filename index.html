@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dApp de Escrow</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js" type="application/javascript"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>dApp de Escrow Profissional</h1>
+        <p>Interaja com o smart contract de forma fácil e segura.</p>
+
+        <div class="card" id="connection-card">
+            <h2>Conexão</h2>
+            <button id="connectButton">Conectar Carteira</button>
+            <p><strong>Status:</strong> <span id="connectionStatus">Desconectado</span></p>
+            <p><strong>Endereço:</strong> <span id="walletAddress">N/A</span></p>
+        </div>
+
+        <div class="card hidden" id="create-order-card">
+            <h2>Criar Novo Pedido de Escrow</h2>
+            <input type="text" id="sellerAddress" placeholder="Endereço do Vendedor">
+            <input type="text" id="description" placeholder="Descrição do Produto/Serviço">
+            <input type="number" id="value" placeholder="Valor em USDC (ex: 50.5)">
+            <input type="number" id="deadline" placeholder="Prazo para confirmar entrega (em dias)">
+            <button id="createButton">1. Aprovar USDC & 2. Criar Pedido</button>
+        </div>
+
+        <div class="card hidden" id="interact-card">
+            <h2>Consultar e Interagir com Pedido</h2>
+            <input type="number" id="orderIdInput" placeholder="Digite o ID do Pedido">
+            <button id="viewButton">Consultar Pedido</button>
+            
+            <div id="orderDetails" class="hidden">
+                <h3>Detalhes do Pedido <span id="orderIdDisplay"></span></h3>
+                <p><strong>Comprador:</strong> <span id="buyer"></span></p>
+                <p><strong>Vendedor:</strong> <span id="seller"></span></p>
+                <p><strong>Valor:</strong> <span id="orderValue"></span> USDC</p>
+                <p><strong>Descrição:</strong> <span id="orderDescription"></span></p>
+                <p><strong>Status:</strong> <span id="orderStatus"></span></p>
+            </div>
+
+            <div id="orderActions" class="hidden">
+                <h3>Ações Disponíveis</h3>
+                <button id="confirmShipButton" class="hidden">Confirmar Envio (Vendedor)</button>
+                <button id="confirmDeliveryButton" class="hidden">Confirmar Entrega e Liberar Pagamento (Comprador)</button>
+                <button id="openDisputeButton" class="hidden">Abrir Disputa (Comprador)</button>
+            </div>
+        </div>
+
+        <div id="statusLog" class="status-log"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
